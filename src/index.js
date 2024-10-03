@@ -1,19 +1,22 @@
 import "primeflex/primeflex.css";
-import 'primeicons/primeicons.css';
+import "primeicons/primeicons.css";
+import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/primereact.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { TodosProvider } from "./contexts/todos.context";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <div className="p-3">
-    <h1>React App Title</h1>
-    <App />
-  </div>
+  <PrimeReactProvider>
+    <TodosProvider>
+        <App />
+    </TodosProvider>
+  </PrimeReactProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
