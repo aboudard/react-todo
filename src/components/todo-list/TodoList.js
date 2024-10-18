@@ -6,6 +6,7 @@ import { DataTable } from "primereact/datatable";
 import React, { useContext, useEffect } from "react";
 import { TodosContext } from "../../contexts/todos.context";
 import { TodoService } from "../../services/todo.service";
+import { InputSwitch } from "primereact/inputswitch";
 
 const TodoList = () => {
   const [state, dispatch] = useContext(TodosContext);
@@ -20,6 +21,11 @@ const TodoList = () => {
     dispatch({ type: "TOGGLE_EDIT_MODE", payload: todo });
   };
 
+  const setChecked = (todo) => {
+    console.log("todo", todo);
+    dispatch({ type: "SET_TODO_ACTIVE", payload: todo });
+  };
+
   const actionTemplate = (todo) => {
     return (
       <>
@@ -29,6 +35,7 @@ const TodoList = () => {
           size="small"
           onClick={() => editTodo(todo)}
         />
+        <InputSwitch checked={todo.active} onChange={(e) => setChecked(todo)} />
       </>
     );
   };
@@ -48,6 +55,9 @@ const TodoList = () => {
           <Column field="description" header="Description"></Column>
           <Column header="Actions" body={actionTemplate}></Column>
         </DataTable>
+        <div>
+          {JSON.stringify(state.todos)}
+        </div>
       </div>
     </div>
   );

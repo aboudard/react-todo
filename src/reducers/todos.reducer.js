@@ -16,6 +16,14 @@ export const todosReducer = (state, action) => {
     case "SET_TODOS": {
       return { ...state, todos: action.payload };
     }
+    case "SET_TODO_ACTIVE": {
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload.id ? { ...todo, active: !todo.active } : todo
+        ),
+      };
+    }
     case "SET_SELECTED_TODO":
       return { ...state, selectedTodo: action.payload };
     default:
