@@ -113,7 +113,6 @@ const TodoList = () => {
               <Column field="description" header="Description"></Column>
               <Column header="Actions" body={actionTemplate}></Column>
             </DataTable>
-            <div>{JSON.stringify(state.todos)}</div>
           </div>
         </>
       )}
