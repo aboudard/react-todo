@@ -3,6 +3,7 @@ export const initialState = {
   isEditMode: false,
   todos: [],
   selectedTodo: null,
+  error: null,
 };
 
 export const todosReducer = (state, action) => {
@@ -26,6 +27,8 @@ export const todosReducer = (state, action) => {
     }
     case "SET_SELECTED_TODO":
       return { ...state, selectedTodo: action.payload };
+    case "SERVER_ERROR":
+      return { ...state, error: action.payload };
     default:
       return state;
   }
